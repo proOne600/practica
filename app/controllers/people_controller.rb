@@ -68,7 +68,7 @@ class PeopleController < ApplicationController
     puts "Tiempo: "+time.to_formatted_s(:rfc822)+" (Este metodo se ejecutara para siempre)"
   end
   
-  handle_asynchronously :pruebaPer; :priority => 8, :run_at => 4.minutes.from_now ##El metodo pruebaPer tendra una prioridad de 8 y se ejecutara cada 4 minutos
+  handle_asynchronously :pruebaPer, :priority => 8, :run_at => 4.minutes.from_now ##El metodo pruebaPer tendra una prioridad de 8 y se ejecutara cada 4 minutos
   
   
   human=Person.new
