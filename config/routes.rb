@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :people
 	root to: 'users#index'	
 	resources :users
 	get 'users/:id/proccess', to: 'users#proccess'

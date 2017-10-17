@@ -60,33 +60,15 @@ class PeopleController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  #@person.delay(:priority => 15, :run_at => 2.minutes.from_now, :queue => 'waiting').prueba(@person.lastname) ##Se le da una prioridad de 15 al metodo y se ejecutara cada 2 minutos
-  Delayed::Job.enqueue job, :queue =>'waiting'
-  def pruebaPer
-    time=Time.now
-    puts "Tiempo: "+time.to_formatted_s(:rfc822)+" (Este metodo se ejecutara para siempre)"
-  end
-  
-  handle_asynchronously :pruebaPer, :priority => 8, :run_at => 4.minutes.from_now ##El metodo pruebaPer tendra una prioridad de 8 y se ejecutara cada 4 minutos
-  
-  
-  human=Person.new
-  
-  human.pruebaPer ##Hacemos el llamado a pruebaPer para que empieze a ejecutarse en segundo plano para siempre
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
     end
-    
-    def prueba(owner)
-      puts "Tiempo actual :"+Time.now+" (Este metodo se ejecutara en segundo plano pero no para siempre)"+owner
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:name, :lastname, :email, :phone, :biography)
+      params.fetch(:person, {})
     end
 end
