@@ -62,7 +62,9 @@ class UsersController < ApplicationController
   end
 
   def proccess
-    
+    @user = User.find(params[:id])
+    @user.delay.proccess
+    redirect_to users_url, notice: 'User processing'
 
   end
 

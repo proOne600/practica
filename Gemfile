@@ -13,9 +13,6 @@ gem 'rails', '~> 5.1.4'
 #Gema delayed job si se usa Active Record
 gem 'delayed_job_active_record'
 
-#Gema Delayed Job usando Mongoid
-gem 'delayed_job_mongoid'
-
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
