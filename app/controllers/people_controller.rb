@@ -61,8 +61,8 @@ class PeopleController < ApplicationController
     end
   end
   
-  @person.delay(priority: 15, run_at: 2.minutes.from_now).prueba(@person.lastname) ##Se le da una prioridad de 15 al metodo y se ejecutara cada 2 minutos
-  
+  @person.delay(:priority => 15, :run_at => 2.minutes.from_now, :queue => 'waiting').prueba(@person.lastname) ##Se le da una prioridad de 15 al metodo y se ejecutara cada 2 minutos
+  Delayed::Job.enqueue job, :queue =>'waiting'
   def pruebaPer
     time=Time.now
     puts "Tiempo: "+time.to_formatted_s(:rfc822)+" (Este metodo se ejecutara para siempre)"
