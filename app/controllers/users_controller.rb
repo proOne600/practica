@@ -68,6 +68,12 @@ class UsersController < ApplicationController
 
   end
 
+  def queue
+    @user = User.find(params[:id])
+    @user.delay(run_at: 5.minutes.from_now, priority: 2).proccess
+    redirect_to users_url, notice: 'User added to queue proccess in 5 minutes'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
